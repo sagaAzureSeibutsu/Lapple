@@ -49,7 +49,7 @@ jobs:
       - name: node_build
         uses: [
           actions/checkout@v3,
-          uses: actions/setup-node@v3
+          actions/setup-node@v3
           ]
         with:
           node-version: 16
