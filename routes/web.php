@@ -14,7 +14,7 @@ use App\Http\Controllers\LikeController;
 |
 */
 
-Route::resource('like', LikeController);
+Route::resource('like', LikeController::class);
 
 Route::get('/', function () {
     return view('welcome');
