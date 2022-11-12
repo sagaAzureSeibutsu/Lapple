@@ -3,13 +3,14 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
 use Validator;
-use App\Models\Mypage;
+use Illuminate\Validation\Rule;
 use App\Models\Interest;
 use Auth;
+use App\Models\User;
 
-class MypageController extends Controller
+
+class InterestController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -18,11 +19,7 @@ class MypageController extends Controller
      */
     public function index()
     {
-        $interests = Interest::query()
-        ->where('user_id', Auth::id())
-        ->orderBy('created_at','desc')
-        ->get();
-        return view('mypage.index', compact('interests'));
+        //
     }
 
     /**
@@ -32,7 +29,7 @@ class MypageController extends Controller
      */
     public function create()
     {
-        return view('mypage.create');
+        //
     }
 
     /**
@@ -43,7 +40,42 @@ class MypageController extends Controller
      */
     public function store(Request $request)
     {
-        //
+
+    // バリデーション
+    $rules1 = [
+        'interest_title' => 'required | max:20',
+    ];
+
+    $rules2 = [
+        'interest_title' =>
+            Rule::unique('interests')->where(function ($query) {
+                return $query->where('user_id', Auth::id());
+            }),
+    ];
+
+    $validator = Validator::make($request->all(), $rules1);
+    // バリデーション:エラー
+    if ($validator->fails()) {
+        return redirect()
+        ->route('mypage.index')
+        ->withInput()
+        ->withErrors($validator);
+    }
+
+    $validator = Validator::make($request->all(), $rules2);
+    // バリデーション:エラー
+    if ($validator->fails()) {
+        return redirect()
+        ->route('mypage.index')
+        ->withInput()
+        ->withErrors($validator);
+    }
+
+    // create()は最初から用意されている関数
+    // 戻り値は挿入されたレコードの情報
+    $data = $request->merge(['user_id' => Auth::user()->id])->all();
+    $result = Interest::create($data);
+    return redirect()->route('mypage.index');
     }
 
     /**
@@ -88,6 +120,7 @@ class MypageController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $result = Interest::find($id)->delete();
+        return redirect()->route('mypage.index');
     }
 }

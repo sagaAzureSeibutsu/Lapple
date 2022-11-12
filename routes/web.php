@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\MypageController;
+use App\Http\Controllers\InterestController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -13,7 +14,15 @@ use App\Http\Controllers\MypageController;
 | contains the "web" middleware group. Now create something great!
 |
 */
-Route::resource('mypage', MypageController::class);
+
+Route::group(['middleware' => 'auth'], function () {
+    //マイページの機能
+    Route::resource('mypage', MypageController::class);
+    // 興味の機能
+    Route::resource('interest',InterestController::class);
+});
+
+
 
 Route::get('/', function () {
     return view('welcome');
