@@ -32,6 +32,7 @@ services:
     mysql:
         image: "mysql/mysql-server:8.0"
         ports:
+<<<<<<< HEAD
             - "${FORWARD_DB_PORT:-3306}:3306"
         environment:
             MYSQL_ROOT_PASSWORD: "${DB_PASSWORD}"
@@ -39,6 +40,15 @@ services:
             MYSQL_DATABASE: "${DB_DATABASE}"
             MYSQL_USER: "${DB_USERNAME}"
             MYSQL_PASSWORD: "${DB_PASSWORD}"
+=======
+            - '${FORWARD_DB_PORT:-3307}:3307'
+        environment:
+            MYSQL_ROOT_PASSWORD: '${DB_PASSWORD}'
+            MYSQL_ROOT_HOST: "${DB_HOST}"
+            MYSQL_DATABASE: '${DB_DATABASE}'
+            MYSQL_USER: '${DB_USERNAME}'
+            MYSQL_PASSWORD: '${DB_PASSWORD}'
+>>>>>>> develop
             MYSQL_ALLOW_EMPTY_PASSWORD: 1
         volumes:
             - "sail-mysql:/var/lib/mysql"
@@ -103,6 +113,18 @@ services:
             MYSQL_USERNAME: "${DB_USERNAME}"
             MYSQL_ROOT_PASSWORD: "${DB_PASSWORD}"
             PMA_HOST: mysql
+        networks:
+            - sail
+    phpmyadmin:
+        image: phpmyadmin/phpmyadmin
+        links:
+            - mysql:mysql
+        ports:
+            - 8080:80
+        environment:
+            MYSQL_USERNAME: "${DB_USERNAME}"
+            MYSQL_ROOT_PASSWORD: "${DB_PASSWORD}"
+            PMA_HOST: "${DB_HOST}"
         networks:
             - sail
 networks:
