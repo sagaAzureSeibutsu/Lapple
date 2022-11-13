@@ -11,7 +11,7 @@
             <div class="p-6 bg-white border-b border-gray-200">
             <table class="text-center w-full border-collapse">
                 <thead>
-                <h3>プロフィール</h3>
+                <h3>この人はいかが？</h3>
                 <div style="margin-top: 30px;">
 
                 <table class="table table-striped">
@@ -23,55 +23,55 @@
                 <th>メールアドレス</th>
                 <td>{{ $user->email }}</td>
                 </tr>
-                <th>興味</th>
-                <td>{{ $interests }}</td>
-                </tr>
-
                 </thead>
             </table>
 
-            {{-- 興味の新規追加 --}}
-            {{-- <div class="py-6">
-                <div class="p-6 bg-white border-b border-gray-200">
-                    @include('common.errors')
-                    <form action="{{ route('interest.store') }}" method="POST">
-                    @csrf
-                    <div>
-                    <label class="font-bold text-lg text-grey-darkest" for="interest_title">興味を登録する</label>
-                    </div>
-                    <div class="inline-block">
-                        <input class="w-1/3 border py-2 px-3 text-grey-darkest" type="text" name="interest_title" id="interest_title">
-                        <button type="submit" class="w-1/3 px-3 py-2 font-medium tracking-widest text-white bg-black shadow-lg focus:outline-none hover:bg-gray-900 hover:shadow-none">
-                            登録
-                        </button>
-                    </div>
-                    </form>
-                </div>
-            </div> --}}
-
             {{-- 興味の一覧表示 --}}
-            {{-- <div class="flex">
-                @foreach($interests as $interest)
-                <form action="{{ route('interest.destroy',$interest->id) }}" method="POST">
-                    @method('delete')
-                    @csrf
-                    <div class="tag">
-                        <b>井 </b>{{$interest->interest_title}}
-                        <button type="submit" class="rounded-full px-1 text-xs font-light tracking-widest text-white bg-red-500 shadow-lg focus:outline-none hover:bg-red-700 hover:shadow-none">
-                            X
-                        </button>
-                    </div>
-                </form>
-                @endforeach
-            </div> --}}
-
+            <label><b>興味のあること</b></label>
+            <div class="flex">
+            @if(count($interests) == 0)
+            <b>この人趣味ないです。</b>
+            @else
+            @foreach($interests as $interest)
+            <div class="tag">
+                <b>井 </b>{{$interest}}
+                <button type="submit" class="rounded-full px-1 text-xs font-light tracking-widest text-white bg-red-500 shadow-lg focus:outline-none hover:bg-red-700 hover:shadow-none">
+                    X
+                </button>
             </div>
+            @endforeach
+            </div>
+            @endif
+            </div>
+
         </div>
         </div>
     </div>
+
+    <div class="result">
+        <div class="flex">
+            <form>
+            @
+            <div class="btn btn--maru btn--circle btn--circle-a btn--shadow">
+                ●
+            </div>
+            </form>
+
+            <form>
+            <div class="btn btn--batu btn--circle btn--circle-a btn--shadow">
+                X
+            </div>
+            </form>
+        </div>
+    </div>
+
 </x-app-layout>
 
 <style>
+    .result {
+        width: 80%;
+        margin: 0 auto;
+    }
     .tag {
         display: inline-block;
         margin: .5em .5em 0 0;
@@ -82,5 +82,38 @@
         background-color: #fff;
         border: 1px solid black;
         border-left: 5px solid black;
+    }
+
+    div.btn--maru {
+    color: #fff;
+    background-color: #eb6100;
+    }
+
+    div.btn--maru:hover {
+    color: #fff;
+    background: #f56500;
+    }
+
+    div.btn--batu {
+    color: #fff;
+    background-color: #0061eb;
+    }
+
+    div.btn--batu:hover {
+    color: #fff;
+    background: #0065f5;
+    }
+
+    div.btn--shadow {
+    -webkit-box-shadow: 0 3px 5px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 3px 5px rgba(0, 0, 0, 0.3);
+    }
+
+    div.btn--circle {
+    border-radius: 50%;
+    line-height: 100px;
+    width: 100px;
+    height: 100px;
+    padding: 0;
     }
 </style>
