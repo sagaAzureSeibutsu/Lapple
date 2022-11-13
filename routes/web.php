@@ -1,7 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\LikeController;
+use App\Http\Controllers\UserController;
+use App\Http\Controllers\InterestController;
 
 /*
 |--------------------------------------------------------------------------
@@ -14,7 +15,12 @@ use App\Http\Controllers\LikeController;
 |
 */
 
-Route::resource('like', LikeController::class);
+Route::group(['middleware' => 'auth'], function () {
+    //マイページの機能
+    Route::resource('mypage', UserController::class);
+    // 興味の機能
+    Route::resource('interest',InterestController::class);
+});
 
 Route::get('/', function () {
     return view('welcome');
