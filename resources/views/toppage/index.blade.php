@@ -23,6 +23,10 @@
                 <th>メールアドレス</th>
                 <td>{{ $user->email }}</td>
                 </tr>
+                <th>koko</th>
+                <td>{{ $interests }}</td>
+                </tr>
+
                 </thead>
             </table>
 
