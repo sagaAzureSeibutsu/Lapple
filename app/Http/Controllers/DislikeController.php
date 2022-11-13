@@ -1,10 +1,12 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use App\Http\Controllers\UserController;
+use App\Models\User;
 use Illuminate\Http\Request;
+use Auth;
 
-class LikeController extends Controller
+class DislikeController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -13,7 +15,6 @@ class LikeController extends Controller
      */
     public function index()
     {
-        //
     }
 
     /**
@@ -32,9 +33,9 @@ class LikeController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(User $user)
     {
-        //
+        // Auth::user()->dislikings()->attach($user->id);
         return redirect()->route('toppage.index');
     }
 
@@ -80,6 +81,6 @@ class LikeController extends Controller
      */
     public function destroy($id)
     {
-        //
+
     }
 }

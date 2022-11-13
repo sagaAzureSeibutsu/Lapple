@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Validator;
 use Illuminate\Validation\Rule;
 use App\Models\Interest;
@@ -23,10 +24,11 @@ class TopController extends Controller
         ->inRandomOrder()
         ->first();
 
-        // $tag = Tag::query()
-        // ->whereIn('user_id',$user->id)
+        $interests = DB::table('interests')
+        ->where('user_id',$user->id)
+        ->pluck('interest_title');
 
-        return view('toppage.index', compact('user'));
+        return view('toppage.index', compact('user','interests'));
     }
 
     /**
