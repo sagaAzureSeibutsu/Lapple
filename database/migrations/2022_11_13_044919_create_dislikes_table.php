@@ -15,6 +15,9 @@ return new class extends Migration
     {
         Schema::create('dislikes', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('user_id')->constrained()->cascadeOnDelete();
+            $table->foreignId('dislike_id')->constrained('users')->cascadeOnDelete();
+            $table->unique(['user_id', 'dislike_id']);
             $table->timestamps();
         });
     }

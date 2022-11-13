@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\InterestController;
 use App\Http\Controllers\TopController;
+use App\Http\Controllers\DislikeController;
 
 /*
 |--------------------------------------------------------------------------
@@ -23,6 +24,9 @@ Route::group(['middleware' => 'auth'], function () {
     Route::resource('interest',InterestController::class);
     //トップページの機能
     Route::resource('toppage', TopController::class);
+    // dislikeの機能
+    Route::resource('dislike', DislikeController::class);
+
 });
 
 Route::get('/', function () {
