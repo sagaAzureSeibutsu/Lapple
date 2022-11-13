@@ -23,6 +23,9 @@ class UserController extends Controller
         ->orderBy('created_at','desc')
         ->get();
         return view('mypage.index', compact('interests'));
+
+         $User= User::getAllOrderByUpdated_at();
+        return view('tweet.index',compact('tweets'));
     }
 
     /**
@@ -54,7 +57,8 @@ class UserController extends Controller
      */
     public function show($id)
     {
-        //
+        $user = User::find($id);
+        return view('user.show', compact('User'));
     }
 
     /**
