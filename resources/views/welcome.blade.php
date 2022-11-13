@@ -17,6 +17,8 @@
         <style>
             body {
                 font-family: 'Nunito', sans-serif;
+                background: rgb(255,0,89);
+                background: linear-gradient(90deg, rgba(255,0,89,1) 0%, rgba(206,18,232,1) 35%, rgba(0,212,255,1) 100%);
             }
         </style>
     </head>
