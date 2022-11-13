@@ -35,6 +35,7 @@ services:
         environment:
             MYSQL_ROOT_PASSWORD: '${DB_PASSWORD}'
             MYSQL_ROOT_HOST: "%"
+            MYSQL_HOST: "${DB_HOST}"
             MYSQL_DATABASE: '${DB_DATABASE}'
             MYSQL_USER: '${DB_USERNAME}'
             MYSQL_PASSWORD: '${DB_PASSWORD}'
@@ -96,7 +97,7 @@ services:
         environment:
             MYSQL_USERNAME: "${DB_USERNAME}"
             MYSQL_ROOT_PASSWORD: "${DB_PASSWORD}"
-            PMA_HOST: mysql
+            PMA_HOST: "${DB_HOST}"
         networks:
             - sail
 networks:
