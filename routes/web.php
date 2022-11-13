@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\InterestController;
+use App\Http\Controllers\TopController;
 
 /*
 |--------------------------------------------------------------------------
@@ -20,6 +21,8 @@ Route::group(['middleware' => 'auth'], function () {
     Route::resource('mypage', UserController::class);
     // 興味の機能
     Route::resource('interest',InterestController::class);
+    //トップページの機能
+    Route::resource('toppage', TopController::class);
 });
 
 Route::get('/', function () {
