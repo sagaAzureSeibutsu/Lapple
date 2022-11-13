@@ -49,19 +49,25 @@
     </div>
 
     <div class="result">
-        <div class="flex">
-            <form>
-            @
-            <div class="btn btn--maru btn--circle btn--circle-a btn--shadow">
-                ●
+        <div class="buttons">
+            <div class="leftButton">
+                <form action="{{ route('like.store', $user) }}" method="POST" class="text-left">
+                    @csrf
+                    <button type="submit" class="btn btn--maru btn--circle btn--circle-a btn--shadow">
+                        OK!
+                    </button>
+                </form>
             </div>
-            </form>
-
-            <form>
-            <div class="btn btn--batu btn--circle btn--circle-a btn--shadow">
-                X
+            <div class="rightButton">
+                <form action="{{ route('dislike.store') }}" method="POST" class="text-left">
+                @csrf
+                <div class="inline-block">
+                    <button type="submit" class="btn btn--batu btn--circle btn--circle-a btn--shadow">
+                        NG!
+                    </button>
+                </div>
+                </form>
             </div>
-            </form>
         </div>
     </div>
 
@@ -69,8 +75,15 @@
 
 <style>
     .result {
-        width: 80%;
-        margin: 0 auto;
+        width: 100%;
+    }
+    .buttons {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    .rightButton {
+        margin-inline-start: 20vw;
     }
     .tag {
         display: inline-block;
@@ -84,32 +97,32 @@
         border-left: 5px solid black;
     }
 
-    div.btn--maru {
+    button.btn--maru {
     color: #fff;
     background-color: #eb6100;
     }
 
-    div.btn--maru:hover {
+    button.btn--maru:hover {
     color: #fff;
     background: #f56500;
     }
 
-    div.btn--batu {
+    button.btn--batu {
     color: #fff;
     background-color: #0061eb;
     }
 
-    div.btn--batu:hover {
+    button.btn--batu:hover {
     color: #fff;
     background: #0065f5;
     }
 
-    div.btn--shadow {
+    button.btn--shadow {
     -webkit-box-shadow: 0 3px 5px rgba(0, 0, 0, 0.3);
     box-shadow: 0 3px 5px rgba(0, 0, 0, 0.3);
     }
 
-    div.btn--circle {
+    button.btn--circle {
     border-radius: 50%;
     line-height: 100px;
     width: 100px;

@@ -35,6 +35,7 @@ class LikeController extends Controller
     public function store(Request $request)
     {
         //
+        return redirect()->route('toppage.index');
     }
 
     /**
