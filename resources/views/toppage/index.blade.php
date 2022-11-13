@@ -51,12 +51,12 @@
     <div class="result">
         <div class="buttons">
             <div class="leftButton">
-                {{-- <form action="{{ route('block', $tweet->user) }}" method="POST" class="text-left"> --}}
-                    {{-- @csrf --}}
+                <form action="{{ route('like.store', $user) }}" method="POST" class="text-left">
+                    @csrf
                     <button type="submit" class="btn btn--maru btn--circle btn--circle-a btn--shadow">
                         OK!
                     </button>
-                {{-- </form> --}}
+                </form>
             </div>
             <div class="rightButton">
                 <form action="{{ route('dislike.store') }}" method="POST" class="text-left">
