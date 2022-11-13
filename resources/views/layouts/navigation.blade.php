@@ -19,9 +19,15 @@
 
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                     <x-nav-link :href="route('mypage.index')" :active="request()->routeIs('mypage.index')">
-                      {{ __('Mypage') }}
+                      {{ __('MyPage') }}
                     </x-nav-link>
-                  </div>
+                </div>
+
+                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                    <x-nav-link :href="route('toppage.index')" :active="request()->routeIs('toppage.index')">
+                      {{ __('TopPage') }}
+                    </x-nav-link>
+                </div>
 
             </div>
 
