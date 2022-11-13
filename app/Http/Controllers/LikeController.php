@@ -4,12 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-use Validator;
-use App\Models\User;
-use App\Models\Interest;
-use Auth;
-
-class UserController extends Controller
+class LikeController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -18,11 +13,7 @@ class UserController extends Controller
      */
     public function index()
     {
-        $interests = Interest::query()
-        ->where('user_id', Auth::id())
-        ->orderBy('created_at','desc')
-        ->get();
-        return view('mypage.index', compact('interests'));
+        //
     }
 
     /**
@@ -32,7 +23,7 @@ class UserController extends Controller
      */
     public function create()
     {
-        return view('mypage.create');
+        //
     }
 
     /**
