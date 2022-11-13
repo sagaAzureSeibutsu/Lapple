@@ -23,7 +23,7 @@
                 <th>メールアドレス</th>
                 <td>{{ $user->email }}</td>
                 </tr>
-                <th>koko</th>
+                <th>興味</th>
                 <td>{{ $interests }}</td>
                 </tr>
 
